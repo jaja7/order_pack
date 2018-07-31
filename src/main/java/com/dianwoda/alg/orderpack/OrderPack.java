@@ -56,7 +56,7 @@ public class OrderPack {
 		if (angleDiff > orderA.getHashMod() / 2) {
 			angleDiff = orderA.getHashMod() - angleDiff;
 		}
-		if (angleDiff > 2) {
+		if (angleDiff >= 2) {
 			return false;
 		}
 		

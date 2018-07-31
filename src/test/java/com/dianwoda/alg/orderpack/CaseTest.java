@@ -67,12 +67,12 @@ public class CaseTest {
         try (
             BufferedWriter writer = Files.newBufferedWriter(Paths.get("D:/proj_派单策略/打包算法/order_pack_java_测试用例生成及验证/orderPackages.csv"));
             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                    .withHeader("orderId", "getAnglehash", "orderSrcLat", "orderSrcLng", "orderDstLat", "orderDstLng", "groupId"));
+                    .withHeader("orderId","getGeohash", "getAnglehash", "orderSrcLat", "orderSrcLng", "orderDstLat", "orderDstLng", "groupId"));
         ) {
         	int groupId = 0;
         	for (OrderPackage orders: ordrpackage) {
         		for (AlgOrder order: orders.getOrders()) {
-        			csvPrinter.printRecord(order.getId(), order.getAnglehash(),  order.getSrcLat(), order.getSrcLng(), order.getDstLat(), order.getDstLng(), groupId);
+        			csvPrinter.printRecord(order.getId(), order.getGeohash(), order.getAnglehash(),  order.getSrcLat(), order.getSrcLng(), order.getDstLat(), order.getDstLng(), groupId);
         		}
         		groupId += 1;
     		}
