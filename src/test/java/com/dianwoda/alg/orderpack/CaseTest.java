@@ -32,7 +32,7 @@ public class CaseTest {
         CaseTest caseTest = new CaseTest();
         List<AlgOrder> orders = caseTest.getOrders();
 
-        List<OrderPackage> ordrpackage = OrderPack.orderPack(orders, 10);
+        List<OrderPackage> ordrpackage = OrderPack.orderPack(orders, 10, 30.3153440000,120.1765050000);
         caseTest.writeOrders(ordrpackage);
 
         assertTrue( true );
@@ -67,12 +67,12 @@ public class CaseTest {
         try (
             BufferedWriter writer = Files.newBufferedWriter(Paths.get("D:/proj_派单策略/打包算法/order_pack_java_测试用例生成及验证/orderPackages.csv"));
             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                    .withHeader("orderId","getGeohash", "getAnglehash", "orderSrcLat", "orderSrcLng", "orderDstLat", "orderDstLng", "groupId"));
+                    .withHeader("orderId","getGeohash", "getAnglehash", "orderSrcLat", "orderSrcLng", "orderDstLat", "orderDstLng", "groupId", "groupScore"));
         ) {
         	int groupId = 0;
         	for (OrderPackage orders: ordrpackage) {
         		for (AlgOrder order: orders.getOrders()) {
-        			csvPrinter.printRecord(order.getId(), order.getGeohash(), order.getAnglehash(),  order.getSrcLat(), order.getSrcLng(), order.getDstLat(), order.getDstLng(), groupId);
+        			csvPrinter.printRecord(order.getId(), order.getGeohash(), order.getAnglehash(),  order.getSrcLat(), order.getSrcLng(), order.getDstLat(), order.getDstLng(), groupId, orders.getScore());
         		}
         		groupId += 1;
     		}

@@ -5,7 +5,7 @@ import static java.lang.Math.abs;
 
 public class OrderPack {
 
-	public static List<OrderPackage> orderPack(List<AlgOrder> orders, int capPackage) {
+	public static List<OrderPackage> orderPack(List<AlgOrder> orders, int capPackage, double riderLat, double riderLng) {
 		//ordersForbid.clear();  // 清空禁忌表
 		//packagesGroup.clear();  // 清空订单包
 		for (AlgOrder oi: orders) {
@@ -40,7 +40,7 @@ public class OrderPack {
 				order2Pack.addAll(orderSimSorted);
 			}			
 			// 打包并存入订单中
-			OrderPackage oPackage = new OrderPackage(order2Pack);
+			OrderPackage oPackage = new OrderPackage(order2Pack, riderLat, riderLng);
 			packagesGroup.add(oPackage);
 		}
 		return packagesGroup;

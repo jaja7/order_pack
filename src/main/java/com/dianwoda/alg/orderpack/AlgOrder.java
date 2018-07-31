@@ -7,12 +7,13 @@ import ch.hsr.geohash.GeoHash;
 
 public class AlgOrder implements Comparable<AlgOrder> {
 
-	public AlgOrder (long id, double srcLat, double srcLng, double dstLat, double dstLng) {
+	public AlgOrder(long id, double srcLat, double srcLng, double dstLat, double dstLng) {
 		this.id = id;
 		this.srcLat = srcLat;
 		this.srcLng = srcLng;
 		this.dstLat = dstLat;
 		this.dstLng = dstLng;
+		this.priority = 1;
 		this.geohash = GeoHash.withCharacterPrecision(srcLat, srcLng, 7);
 		this.anglehash = angleHashCal(srcLat, srcLng, dstLat, dstLng);
 		
@@ -96,7 +97,20 @@ public class AlgOrder implements Comparable<AlgOrder> {
 	public void setFar(AlgOrder orderCore) {
 		this.far = AlgDistHaversine.distH(srcLat, srcLng, orderCore.getSrcLat(), orderCore.getSrcLng());
 	}
+	/**
+	 * @param priority the priority to set
+	 */
+	public void setPriority(long priority) {
+		this.priority = priority;
+	}
+	/**
+	 * @return the priority
+	 */
+	public long getPriority() {
+		return priority;
+	}
 
+	private long priority;
 	private long id;
 	private double srcLat;
 	private double srcLng;
