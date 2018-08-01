@@ -35,10 +35,7 @@ public class OrderPackage {
 		double latCenter = latSum / orders.size();
 		double lngCenter = lngSum / orders.size();
 		double d = AlgDistHaversine.distH(latCenter, lngCenter, riderLat, riderLng);
-		this.score = prioritySum / Math.sqrt(500.0 / Math.max(500.0, d));	
-		System.out.println("$$$$$");
-		System.out.println(prioritySum);
-		System.out.println(d);
+		this.score = prioritySum * Math.sqrt(500.0 / Math.max(500.0, d));	
 	}
 	
 	private double riderLat;
